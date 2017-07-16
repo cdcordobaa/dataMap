@@ -1,0 +1,29 @@
+#local_map {
+
+    height: 780px;
+}
+
+
+@-webkit-keyframes html {
+    to {
+        stroke-dashoffset: 80;
+    }
+}
+
+@keyframes html {
+    to {
+        stroke-dashoffset: 80;
+    }
+}
+
+@-webkit-keyframes percent {
+    to {
+        stroke-dashoffset: 160;
+    }
+}
+
+@keyframes percent {
+    to {
+        stroke-dashoffset: 160;
+    }
+}
