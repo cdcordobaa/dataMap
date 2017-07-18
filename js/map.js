@@ -2,12 +2,13 @@
 
 var map;
 
+
 function initMap() {
     // Basic options for a simple Google Map
     // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
     //variables for directions  
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+    // var directionsService = new google.maps.DirectionsService;
+    // var directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
     
     var mapOptions = {
         // How zoomed in you want the map to start at (always required)
@@ -195,17 +196,30 @@ function initMap() {
     map = new google.maps.Map(mapElement, mapOptions);
     
     //set display direction
-    directionsDisplay.setMap(map);
+    // directionsDisplay.setMap(map);
     
+    // var onChangeHandler = function() {
+    //     calculateAndDisplayRoute(directionsService, directionsDisplay);
+    //
+    //     var markersSubSet = [];
+    //     for (var i = 0; i < 4 ; i++) {
+    //         markersSubSet.push(fakeData[i]);
+    //     }
+    //     console.log(markersSubSet);
+    //     calculateWaypointRoute(directionsService, directionsDisplay, markersSubSet);
+    // };
+
     var onChangeHandler = function() {
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
-         
-        var markersSubSet = [];
-        for (var i = 0; i < 4 ; i++) {
-            markersSubSet.push(fakeData[i]);
-        }
-        console.log(markersSubSet);
-        calculateWaypointRoute(directionsService, directionsDisplay, markersSubSet);
+
+        var latlon1 = new google.maps.LatLng(4.636526, -74.083160);
+        var latlon2 = new google.maps.LatLng(4.336526, -74.083160);
+
+        calculateTwoPointsRoute(map, latlon1, latlon2);
+
+        highlightLocations(map);
+        //removeHighlightLocations(map);
+
+
     };
     document.getElementById('start').addEventListener('change', onChangeHandler);
     document.getElementById('end').addEventListener('change', onChangeHandler);
@@ -226,8 +240,8 @@ function initMap() {
     // });
     
     // addInfoWindow(map,marker);
-    map.data.loadGeoJson("js/local.json");
-    
+    //map.data.loadGeoJson("js/local.json");
+
 }
 
 function addInfoWindow(map, marker){
